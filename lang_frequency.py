@@ -11,7 +11,7 @@ def load_text(filepath):
     return text
 
 
-def get_word_counter(text):
+def get_frequent_word_counter(text):
     word_dict = {}
     words = re.findall(r'\w+', text)
     lower_words = [word.lower() for word in words]
@@ -23,6 +23,6 @@ def get_word_counter(text):
 if __name__ == '__main__':
     filepath = input('Enter file name/path: ')
     text = load_text(filepath)
-    word_counter = get_word_counter(text)
+    word_counter = get_frequent_word_counter(text)
     top_10_words = word_counter.most_common(10)
     print(top_10_words)
