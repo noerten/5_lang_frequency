@@ -7,21 +7,28 @@ def load_text(filepath):
     if not os.path.exists(filepath):
         return None
     with open(filepath) as text_file:
-        text = text_file.read()
+        text = ''
+        for line in text_file:
+            text = text + line
     return text
 
 
-def get_frequent_word_counter(text):
-    word_dict = {}
+def get_lowered_words(text):
     words = re.findall(r'\w+', text)
     lower_words = [word.lower() for word in words]
-    word_counter = Counter(lower_words)
-    return word_counter
+    return lower_words
+
+
+def get_most_frequent_words(low_words):
+    word_counter = Counter(low_words)
+    top_10_dict = word_counter.most_common(10)
+    top_10_list = [i[0] for i in top_10_dict]
+    return top_10_list
 
 
 if __name__ == '__main__':
     filepath = input('Enter file name/path: ')
     text = load_text(filepath)
-    word_counter = get_frequent_word_counter(text)
-    top_10_words = word_counter.most_common(10)
+    low_words = get_lowered_words(text)
+    top_10_words = get_most_frequent_words(low_words)
     print(top_10_words)
