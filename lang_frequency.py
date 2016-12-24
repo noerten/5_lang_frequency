@@ -19,7 +19,6 @@ def get_frequent_word_counter(text):
     return word_counter
 
 
-
 if __name__ == '__main__':
     filepath = input('Enter file name/path: ')
     text = load_text(filepath)
